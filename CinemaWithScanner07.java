@@ -5,26 +5,62 @@ public class CinemaWithScanner07 {
         Scanner scanner = new Scanner(System.in);
 
         String name, next;
-        int row, column;
+        int row, column, menu;
         String[][] audience = new String[4][2];
+        
+    while (true) {
 
-        while (true) {
-            System.out.print("Enter a name: ");
-            name = scanner.nextLine();
-            System.out.print("Enter row number: ");
-            row = scanner.nextInt();
-            System.out.print("Enter column number: ");
-            column = scanner.nextInt();
-            scanner.nextLine();
+    
+        System.out.println("===== AUDIENCE =====");
+        System.out.println("Option:");
+        System.out.println("Menu 1: Input Audience Data");
+        System.out.println("Menu 2: Show Audience List");
+        System.out.println("Menu 3: Exit");
 
-            audience[row - 1][column - 1] = name;
-            System.out.print("Are they any other audiences to be added? (y/n): ");
-            next = scanner.nextLine();
+        System.out.print("Choose the menu: ");
+        menu = scanner.nextInt();
+        scanner.nextLine();
 
-            if (next.equalsIgnoreCase("n")) {
+        switch (menu) {
+            case 1:
+                while (true) {
+                    System.out.print("Enter a name: ");
+                    name = scanner.nextLine();
+                    System.out.print("Enter row number: ");
+                    row = scanner.nextInt();
+                    System.out.print("Enter column number: ");
+                    column = scanner.nextInt();
+                    scanner.nextLine();
+
+                    audience[row - 1][column - 1] = name;
+
+                    System.out.print("Are they any other audiences to be added? (y/n): ");
+                    next = scanner.nextLine();
+
+                    if (next.equalsIgnoreCase("n")) {
+                        break;
+                    }     
+                 }
+                 break;
+            
+            case 2:
+                for (int i = 0; i < audience.length; i++) {
+                    for (int j = 0; j < audience[i].length; j++) {
+                        System.out.print((audience[i][j] == null ? "-" : audience[i][j]) + "\t");
+                    }
+                    System.out.println();
+                }
                 break;
-            }
+            case 3:
+                System.out.println("Thank You");
+                scanner.close();
+                return;
+
+            default:
+                System.out.println("Invalid Input");
+                break;
         }
-        scanner.close();
+        System.out.println();
     }
+}
 }
